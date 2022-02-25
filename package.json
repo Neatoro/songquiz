@@ -1,0 +1,8 @@
+{
+  "name": "song-quiz",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm ci --prefix backend"
+  }
+}
