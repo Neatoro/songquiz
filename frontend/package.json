@@ -1,0 +1,19 @@
+{
+  "name": "song-quiz-frontend",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "serve": "http-server dist"
+  },
+  "dependencies": {
+    "svelte": "^3.46.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "http-server": "^14.1.0",
+    "rollup": "^2.68.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-svelte": "^7.1.0"
+  }
+}
