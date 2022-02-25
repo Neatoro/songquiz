@@ -1,7 +1,7 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
-import { map } from 'rxjs';
+import { map, take } from 'rxjs';
 
 @Controller('/auth')
 export class AuthController {
@@ -14,12 +14,15 @@ export class AuthController {
 
     @Get('/callback')
     @UseGuards(AuthGuard('spotify'))
-    callback(@Req() request) {
-        return request.user.pipe(
-            map((user: object) => ({
-                access_token: this.jwtService.sign(user)
-            }))
-        )
+    callback(@Req() request, @Res() response) {
+        return request.user
+            .pipe(take(1))
+            .subscribe((user) => {
+                response.cookie('SQJWT', {
+                    access_token: this.jwtService.sign(user)
+                });
+                response.redirect('/app');
+            });
     }
 
 }
