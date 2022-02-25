@@ -1,7 +1,14 @@
 {
     "compilerOptions": {
+        "module": "CommonJS",
+        "target": "es2020",
         "baseUrl": "backend/src",
         "outDir": "dist",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "moduleResolution": "node",
+        "lib": [
+            "es7"
+        ]
     }
 }
