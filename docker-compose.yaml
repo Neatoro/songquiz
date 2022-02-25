@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  backend:
+    image: song-quiz-backend
+    build:
+      context: backend
+    env_file:
+      - backend/.env
+
+  frontend:
+    image: song-quiz-frontend
+    build:
+      context: frontend
+
+  gateway:
+    image: song-quiz-gateway
+    build:
+      context: gateway
+    ports:
+      - 5001:4455

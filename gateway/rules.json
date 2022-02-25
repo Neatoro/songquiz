@@ -1,0 +1,40 @@
+[
+    {
+        "id": "backend-api",
+        "upstream": {
+            "url": "http://backend:8080"
+        },
+        "match": {
+            "url": "http://localhost:5001/api"
+        },
+        "authenticators": [{ "handler": "noop" }],
+        "authorizer": { "handler": "allow" },
+        "mutators": [{ "handler": "noop" }]
+    },
+    {
+        "id": "backend-auth",
+        "upstream": {
+            "url": "http://backend:8080"
+        },
+        "match": {
+            "url": "http://localhost:5001/auth"
+        },
+        "authenticators": [{ "handler": "noop" }],
+        "authorizer": { "handler": "allow" },
+        "mutators": [{ "handler": "noop" }]
+    },
+    {
+        "id": "frontend",
+        "upstream": {
+            "url": "http://frontend",
+            "strip_path": "/app"
+        },
+        "match": {
+            "url": "http://localhost:5001/app/<.*>",
+            "methods": ["GET"]
+        },
+        "authenticators": [{ "handler": "noop" }],
+        "authorizer": { "handler": "allow" },
+        "mutators": [{ "handler": "noop" }]
+    }
+]

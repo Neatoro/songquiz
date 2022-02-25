@@ -1,0 +1,23 @@
+version: v0.38.20-beta.1
+
+serve:
+  proxy:
+    port: 4455
+  api:
+    port: 4456
+
+access_rules:
+  repositories:
+    - file:///proxy/rules.json
+
+mutators:
+  noop:
+    enabled: true
+
+authenticators:
+  noop:
+    enabled: true
+
+authorizers:
+  allow:
+    enabled: true
