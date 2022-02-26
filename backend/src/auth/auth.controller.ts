@@ -2,6 +2,7 @@ import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { take } from 'rxjs';
 import { JwtService } from './jwt.service';
+import { resolve as pathResolver } from 'path';
 
 @Controller('/auth')
 export class AuthController {
@@ -18,11 +19,15 @@ export class AuthController {
         return request.user
             .pipe(take(1))
             .subscribe(async (user) => {
-                response.cookie('SQJWT', {
-                    access_token: await this.jwtService.sign(user)
-                });
-                response.redirect('/app');
+                response.cookie('SQJWT', await this.jwtService.sign(user));
+                response.redirect('/app/');
             });
+    }
+
+    @Get('/.well-known/jwks.json')
+    async jwks() {
+        const jwks = await import(pathResolver(process.cwd(), '.well-known', 'jwks.json'));
+        return jwks;
     }
 
 }

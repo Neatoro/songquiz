@@ -17,6 +17,15 @@ mutators:
 authenticators:
   noop:
     enabled: true
+  jwt:
+    enabled: true
+    config:
+      allowed_algorithms:
+        - "RS512"
+      jwks_urls:
+        - http://backend:8080/auth/.well-known/jwks.json
+      token_from:
+        cookie: SQJWT
 
 authorizers:
   allow:

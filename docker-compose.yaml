@@ -8,6 +8,10 @@ services:
       context: backend
     env_file:
       - backend/.env
+    environment:
+      - SPOTIFY_CALLBACK_URL=http://localhost:5001/auth/callback
+    volumes:
+      - ./backend/.well-known:/app/.well-known
 
   frontend:
     image: song-quiz-frontend

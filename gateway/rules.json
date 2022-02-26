@@ -5,7 +5,8 @@
             "url": "http://backend:8080"
         },
         "match": {
-            "url": "http://localhost:5001/api"
+            "url": "http://localhost:5001/api",
+            "methods": ["GET"]
         },
         "authenticators": [{ "handler": "noop" }],
         "authorizer": { "handler": "allow" },
@@ -17,7 +18,8 @@
             "url": "http://backend:8080"
         },
         "match": {
-            "url": "http://localhost:5001/auth"
+            "url": "http://localhost:5001/auth<.*>",
+            "methods": ["GET"]
         },
         "authenticators": [{ "handler": "noop" }],
         "authorizer": { "handler": "allow" },
@@ -33,7 +35,7 @@
             "url": "http://localhost:5001/app/<.*>",
             "methods": ["GET"]
         },
-        "authenticators": [{ "handler": "noop" }],
+        "authenticators": [{ "handler": "jwt" }],
         "authorizer": { "handler": "allow" },
         "mutators": [{ "handler": "noop" }]
     }
