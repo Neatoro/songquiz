@@ -4,15 +4,7 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
 import { SpotifyStrategy } from './spotify.strategy';
-import { JwksClient } from 'jwks-rsa';
-import { resolve as pathResolver } from 'path';
 import { JwtService } from './jwt.service';
-
-const jwksClient = new JwksClient({
-    cache: true,
-    rateLimit: false,
-    jwksUri: 'file://' + pathResolver(__dirname, '.well-known', 'jwks.json')
-});
 
 @Module({
     imports: [
