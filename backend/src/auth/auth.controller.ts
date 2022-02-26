@@ -1,7 +1,7 @@
 import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
-import { map, take } from 'rxjs';
+import { take } from 'rxjs';
+import { JwtService } from './jwt.service';
 
 @Controller('/auth')
 export class AuthController {
@@ -17,9 +17,9 @@ export class AuthController {
     callback(@Req() request, @Res() response) {
         return request.user
             .pipe(take(1))
-            .subscribe((user) => {
+            .subscribe(async (user) => {
                 response.cookie('SQJWT', {
-                    access_token: this.jwtService.sign(user)
+                    access_token: await this.jwtService.sign(user)
                 });
                 response.redirect('/app');
             });

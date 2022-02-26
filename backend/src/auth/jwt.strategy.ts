@@ -1,16 +1,21 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
-import { ConfigService } from '@nestjs/config';
 import { Injectable } from '@nestjs/common';
+import { passportJwtSecret } from 'jwks-rsa';
+import { resolve as pathResolver } from 'path';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 
-    constructor(config: ConfigService) {
+    constructor() {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
-            secretOrKey: config.get<string>('JWT_SECRET')
+            secretOrKeyProvider: passportJwtSecret({
+                cache: true,
+                rateLimit: false,
+                jwksUri: 'file://' + pathResolver(process.cwd(), '.well-known', 'jwks.json')
+            })
         });
     }
 
