@@ -5,7 +5,7 @@
             "url": "http://backend:8080"
         },
         "match": {
-            "url": "http://localhost:5001/api",
+            "url": "http://localhost:5001/api/<.*>",
             "methods": ["GET"]
         },
         "authenticators": [{ "handler": "noop" }],
