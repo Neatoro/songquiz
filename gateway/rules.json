@@ -10,7 +10,8 @@
         },
         "authenticators": [{ "handler": "noop" }],
         "authorizer": { "handler": "allow" },
-        "mutators": [{ "handler": "noop" }]
+        "mutators": [{ "handler": "noop" }],
+        "errors": [{ "handler": "redirect" }]
     },
     {
         "id": "backend-auth",
@@ -23,7 +24,8 @@
         },
         "authenticators": [{ "handler": "noop" }],
         "authorizer": { "handler": "allow" },
-        "mutators": [{ "handler": "noop" }]
+        "mutators": [{ "handler": "noop" }],
+        "errors": [{ "handler": "redirect" }]
     },
     {
         "id": "frontend",
@@ -37,6 +39,7 @@
         },
         "authenticators": [{ "handler": "jwt" }],
         "authorizer": { "handler": "allow" },
-        "mutators": [{ "handler": "noop" }]
+        "mutators": [{ "handler": "noop" }],
+        "errors": [{ "handler": "redirect" }]
     }
 ]

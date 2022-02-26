@@ -30,3 +30,14 @@ authenticators:
 authorizers:
   allow:
     enabled: true
+
+errors:
+  handlers:
+    redirect:
+      config:
+        when:
+          - error:
+              - unauthorized
+              - not_found
+        to: http://localhost:5001/auth
+      enabled: true
