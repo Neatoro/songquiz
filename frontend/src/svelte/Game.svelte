@@ -17,12 +17,12 @@ function random() {
     return Math.floor(Math.random() * songs.length);
 }
 
-function startRound() {
+async function startRound() {
     showSolution = false;
     countdown = 30;
     currentSong = songs[random()];
     songs = songs.filter((song) => song.track.id !== currentSong.track.id)
-    fetch(`/api/songs/play?song=${currentSong.track.uri}&device_id=${deviceId}`, {
+    await fetch(`/api/songs/play?song=${currentSong.track.uri}&device_id=${deviceId}`, {
         method: 'PUT'
     });
     const timer = setInterval(
