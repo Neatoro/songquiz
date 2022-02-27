@@ -6,7 +6,7 @@
         },
         "match": {
             "url": "http://localhost:5001/api/<.*>",
-            "methods": ["GET"]
+            "methods": ["GET", "PUT"]
         },
         "authenticators": [{ "handler": "noop" }],
         "authorizer": { "handler": "allow" },

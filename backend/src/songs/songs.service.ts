@@ -40,4 +40,20 @@ export class SongsService {
         return songs;
     }
 
+    play(accessToken, song, deviceId) {
+        return new Promise((resolve) => {
+            this.http
+                .put(
+                    `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+                    { uris: [song] },
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`
+                        }
+                    }
+                )
+                .subscribe(() => resolve({ song, device_id: deviceId }));
+        });
+    }
+
 };

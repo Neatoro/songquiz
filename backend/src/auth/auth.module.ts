@@ -5,13 +5,14 @@ import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
 import { SpotifyStrategy } from './spotify.strategy';
 import { JwtService } from './jwt.service';
+import { TokenController } from './token.controller';
 
 @Module({
     imports: [
         HttpModule,
         PassportModule
     ],
-    controllers: [AuthController],
+    controllers: [AuthController, TokenController],
     providers: [SpotifyStrategy, JwtStrategy, JwtService]
 })
 export class AuthModule {};

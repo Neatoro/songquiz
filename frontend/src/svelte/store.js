@@ -2,7 +2,8 @@ import { writable } from 'svelte/store';
 
 export const state = writable({
     status: 'selection',
-    songs: []
+    songs: [],
+    deviceId: undefined
 });
 
 export function updateStatus(newStatus) {
@@ -22,3 +23,10 @@ export async function loadSongs(playlists = []) {
         return self;
     });
 };
+
+export function setDeviceId(deviceId) {
+    state.update((self) => {
+        self.deviceId = deviceId;
+        return self;
+    });
+}

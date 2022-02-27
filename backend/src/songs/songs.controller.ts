@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Put, Query, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { SongsService } from './songs.service';
 
@@ -13,6 +13,13 @@ export class SongsController {
         const { accessToken } = request.user;
         const playlistArray = playlists.split(',');
         return this.songsService.list(accessToken, playlistArray);
+    }
+
+    @Put('/play')
+    @UseGuards(AuthGuard('jwt'))
+    play(@Query('song') song: string, @Query('device_id') deviceId: string, @Req() request) {
+        const { accessToken } = request.user;
+        return this.songsService.play(accessToken, song, deviceId);
     }
 
 };

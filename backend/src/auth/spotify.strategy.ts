@@ -14,7 +14,8 @@ export class SpotifyStrategy extends PassportStrategy(Strategy, 'spotify') {
             tokenURL: 'https://accounts.spotify.com/api/token',
             clientID: config.get<string>('SPOTIFY_CLIENT_ID'),
             clientSecret: config.get<string>('SPOTIFY_CLIENT_SECRET'),
-            callbackURL: config.get<string>('SPOTIFY_CALLBACK_URL')
+            callbackURL: config.get<string>('SPOTIFY_CALLBACK_URL'),
+            scope: ['streaming', 'user-read-email', 'user-read-private']
         });
     }
 
