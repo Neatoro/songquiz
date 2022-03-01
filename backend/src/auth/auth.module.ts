@@ -15,6 +15,6 @@ import { JwtGuard } from './jwt.guard';
     ],
     controllers: [AuthController, TokenController],
     providers: [SpotifyStrategy, JwtStrategy, JwtService, JwtGuard],
-    exports: [JwtGuard]
+    exports: [JwtGuard, JwtService]
 })
 export class AuthModule {};

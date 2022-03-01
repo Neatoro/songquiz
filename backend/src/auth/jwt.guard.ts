@@ -1,5 +1,5 @@
 import { HttpService } from '@nestjs/axios';
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext, Global, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AuthGuard } from '@nestjs/passport';
 import { JwtService } from './jwt.service';
@@ -28,6 +28,7 @@ export class JwtGuard extends AuthGuard('jwt') {
 
             return super.canActivate(context) as Promise<boolean>;
         } catch (e) {
+            console.error(e);
             return false;
         }
     }
