@@ -1,13 +1,15 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { JwtGuard } from './jwt.guard';
 
 @Controller('/api/token')
 export class TokenController {
 
     @Get()
-    @UseGuards(AuthGuard('jwt'))
+    @UseGuards(JwtGuard)
     token(@Req() request) {
-        return request.user;
+        return {
+            accessToken: request.user.accessToken
+        };
     }
 
 };

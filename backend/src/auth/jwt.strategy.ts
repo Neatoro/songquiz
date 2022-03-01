@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
             },
             ignoreExpiration: false,
             async secretOrKeyProvider(_request, _token, done) {
-                const key = await jwtService.getPublicKey();
+                const key = await jwtService.getPublicKeyAsSPKI();
                 done(null, key);
             }
         });
