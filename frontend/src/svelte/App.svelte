@@ -13,7 +13,6 @@ state.subscribe(({ status }) => {
     viewedComponent = statusComponents[status];
 });
 
-
 </script>
 
 <svelte:component this={viewedComponent} />

@@ -113,9 +113,23 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    animation: pop ease-in 0.7s;
 }
 
 .category__image {
     width: 10vw;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0.3;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 </style>

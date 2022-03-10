@@ -1,5 +1,7 @@
 <script>
 import { state } from './store';
+import Progress from './Progess.svelte';
+import Progess from './Progess.svelte';
 
 let songs;
 let currentSong;
@@ -27,19 +29,39 @@ async function startRound() {
     });
     const timer = setInterval(
         () => {
-            --countdown;
-            if (countdown === 0) {
+            countdown -= 0.1;
+            if (countdown <= 0) {
                 showSolution = true;
                 clearInterval(timer);
             }
         },
-        1000
+        100
     );
 }
 
 </script>
-<p>{countdown}s</p>
-{#if showSolution}
-<p>{currentSong.track.name} - {currentSong.track.artists.map((art) => art.name).join(', ')}</p>
-<button on:click={startRound}>Nächste Runde</button>
-{/if}
+
+<main>
+    {#if showSolution}
+    <p>{currentSong.track.name}</p>
+    <p>{currentSong.track.artists.map((art) => art.name).join(', ')}</p>
+    <p><button on:click={startRound}>Nächste Runde</button></p>
+    {:else}
+    <Progess data={((30 - countdown) / 30) * 100} />
+    {/if}
+</main>
+
+<style>
+main {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+p {
+    font-size: 64px;
+}
+</style>
